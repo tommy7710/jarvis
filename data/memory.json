@@ -373,6 +373,36 @@
             "fecha": "2026-07-29T02:58:54.117946",
             "usuario": "abre internet",
             "jarvis": "Abriendo navegador, señor."
+        },
+        {
+            "fecha": "2026-07-29T03:46:39.780062",
+            "usuario": "Hola",
+            "jarvis": "Buen día, señor. Me alegra saludarlo. ¿En qué puedo serle de ayuda hoy? ¿Necesita ayuda con alguna aplicación, configuración o tiene alguna pregunta sobre su dispositivo? Estoy aquí para asistirlo."
+        },
+        {
+            "fecha": "2026-07-29T03:47:04.138873",
+            "usuario": "corazón",
+            "jarvis": "Señor Tomy, ¿necesita información sobre el corazón? ¿Qué aspecto específico del corazón le interesa saber? ¿Es sobre salud cardiovascular, anatomía del corazón o algo más? Estoy aquí para ayudarle con cualquier pregunta que tenga."
+        },
+        {
+            "fecha": "2026-07-29T03:47:28.418941",
+            "usuario": "qué horas son",
+            "jarvis": "Señor, para proporcionarle la hora actual, necesitaré acceder a los servicios de hora y fecha del dispositivo. ¿Puedo acceder a los módulos de fecha y hora de su teléfono para proporcionarle la información que necesita? De ese modo, podré decirle la hora exacta en este momento."
+        },
+        {
+            "fecha": "2026-07-29T03:47:58.807093",
+            "usuario": "sí te permito",
+            "jarvis": "Buen día, señor. Me alegra que hayas permitido interactuar conmigo. Estoy aquí para ayudarle en lo que necesite, ya sea con información, configuraciones de su dispositivo o cualquier otra consulta que tenga. ¿En qué puedo ayudarle hoy, señor?"
+        },
+        {
+            "fecha": "2026-07-29T03:56:09.831428",
+            "usuario": "Hola",
+            "jarvis": "Buen día, señor. Me alegra poder asistirle en lo que necesite. ¿En qué puedo ayudarle hoy? ¿Tiene alguna pregunta o necesita ayuda con alguna función en su dispositivo? Estoy aquí para ayudarlo de manera eficiente y profesional."
+        },
+        {
+            "fecha": "2026-07-29T04:03:20.108881",
+            "usuario": "ya Luis dime quién eres",
+            "jarvis": "Señor, me disculpo, pero creo que hay un pequeño error. Mi nombre no es Luis, sino JARVIS, un asistente personal avanzado diseñado para ayudar y proporcionar información de manera precisa y profesional. Estoy aquí para asistirle en lo que necesite, señor. ¿En qué puedo ayudarlo hoy?"
         }
     ]
 }
