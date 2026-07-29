@@ -11,6 +11,7 @@ from brain.memory import (
 from brain.personality import Personality
 from brain.intent import detectar_intencion
 
+
 from skills.system import (
     hora,
     fecha
@@ -18,8 +19,6 @@ from skills.system import (
 
 from skills.battery import bateria
 from skills.weather import clima
-
-from android.actions import ejecutar_comando
 
 
 URL = "https://api.groq.com/openai/v1/chat/completions"
@@ -34,13 +33,17 @@ def responder(mensaje):
     texto = mensaje.lower().strip()
 
 
-    # Guardar nombre
+
+    # ==============================
+    # Guardar nombre del usuario
+    # ==============================
 
     if "mi nombre es" in texto:
 
         nombre = (
-            mensaje.lower()
-            .split("mi nombre es")[-1]
+            texto.split(
+                "mi nombre es"
+            )[-1]
             .strip()
         )
 
@@ -48,6 +51,7 @@ def responder(mensaje):
         if nombre:
 
             nombre = nombre.title()
+
 
             recordar(
                 "nombre",
@@ -62,6 +66,10 @@ def responder(mensaje):
 
 
 
+    # ==============================
+    # Comandos rápidos del sistema
+    # ==============================
+
     intencion = detectar_intencion(
         mensaje
     )
@@ -69,9 +77,6 @@ def responder(mensaje):
 
     respuesta = None
 
-
-
-    # FUNCIONES INTERNAS
 
 
     if intencion == "hora":
@@ -121,67 +126,68 @@ def responder(mensaje):
 
 
 
-    # ACCIONES ANDROID
+    # ==============================
+    # Nuevos comandos naturales
+    # ==============================
+
+    if respuesta is None:
 
 
-    elif intencion == "abrir_app":
+        if "quien soy" in texto:
 
-        app = (
-            texto
-            .replace("abre", "")
-            .replace("abrir", "")
-            .strip()
-        )
+            nombre = buscar_recuerdo(
+                "nombre"
+            )
 
 
-        respuesta = ejecutar_comando(
-            "abrir_app",
-            {
-                "app": app
-            }
-        )
+            if nombre:
 
+                respuesta = (
+                    f"Usted es {nombre}, señor. "
+                    "Mi usuario registrado."
+                )
 
+            else:
 
-    elif intencion == "abrir_web":
-
-        respuesta = ejecutar_comando(
-            "abrir_web",
-            {
-                "url": "https://www.google.com"
-            }
-        )
+                respuesta = (
+                    "Todavía no tengo su nombre "
+                    "guardado."
+                )
 
 
 
-    elif intencion == "camara":
+        elif (
+            "estado del sistema" in texto
+            or "estado de jarvis" in texto
+        ):
 
-        respuesta = ejecutar_comando(
-            "camara"
-        )
-
-
-
-    elif intencion == "ajustes":
-
-        respuesta = ejecutar_comando(
-            "ajustes"
-        )
+            respuesta = (
+                "Sistema JARVIS operativo, señor. "
+                "Núcleo de inteligencia activo."
+            )
 
 
+
+    # ==============================
+    # Devolver respuesta local
+    # ==============================
 
     if respuesta:
+
 
         guardar_historial(
             mensaje,
             respuesta
         )
 
+
         return respuesta
 
 
 
-    # CONVERSACIÓN NORMAL CON GROQ
+    # ==============================
+    # Inteligencia Groq
+    # ==============================
 
 
     nombre = buscar_recuerdo(
@@ -205,6 +211,7 @@ def responder(mensaje):
     }
 
 
+
     data = {
 
         "model": MODEL,
@@ -215,6 +222,7 @@ def responder(mensaje):
                 "role": "system",
                 "content": contexto
             },
+
 
             {
                 "role": "user",
@@ -229,30 +237,46 @@ def responder(mensaje):
 
     try:
 
-        respuesta_api = requests.post(
+
+        respuesta = requests.post(
+
             URL,
+
             headers=headers,
+
             json=data,
+
             timeout=30
+
         )
 
 
-        respuesta_api.raise_for_status()
+        respuesta.raise_for_status()
 
 
-        datos = respuesta_api.json()
+
+        datos = respuesta.json()
+
 
 
         resultado = (
+
             datos["choices"][0]
+
             ["message"]
+
             ["content"]
+
         )
 
 
+
         guardar_historial(
+
             mensaje,
+
             resultado
+
         )
 
 
@@ -262,7 +286,11 @@ def responder(mensaje):
 
     except Exception as e:
 
+
         return (
-            "Señor, hubo un error "
-            f"en mi núcleo de inteligencia: {e}"
+
+            "Señor, tuve un problema "
+            "con mi conexión inteligente: "
+            f"{e}"
+
         )

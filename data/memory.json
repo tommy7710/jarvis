@@ -363,6 +363,16 @@
             "fecha": "2026-07-29T01:19:12.476589",
             "usuario": "quién soy",
             "jarvis": "Usted es Tomy, señor. Es el usuario registrado en mi memoria."
+        },
+        {
+            "fecha": "2026-07-29T02:57:22.319564",
+            "usuario": "abre internet",
+            "jarvis": "Señor, todavía no tengo configurada la aplicación internet."
+        },
+        {
+            "fecha": "2026-07-29T02:58:54.117946",
+            "usuario": "abre internet",
+            "jarvis": "Abriendo navegador, señor."
         }
     ]
 }
